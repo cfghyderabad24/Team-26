@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import './App.css';
 
 // TrusteeLevel components
@@ -23,6 +23,12 @@ import Home from './components/Home';
 import AlumniConnections from './alumniLevel/AlumniConnections';
 import AlumniHome from './alumniLevel/AlumniHome';
 import AlumniProfile from './alumniLevel/AlumniProfile';
+
+import RegisterForm from './components/RegisterForm';
+import RenewalForm from './components/RenewalForm';
+import Dashboard from './components/Dashboard';
+import StudentDetail from './ngoLevel/studentDetail';
+import StudentList from './ngoLevel/studentList';
 
 function App() {
     return (
@@ -50,6 +56,14 @@ function App() {
                     <Route path="/alumni/home" element={<AlumniHome />} />
                     <Route path="/alumni/profile" element={<AlumniProfile />} />
                     <Route path="/alumni/connections" element={<AlumniConnections />} />
+
+                    <Route path="/dashboard" element={< Dashboard/>} />
+                    <Route path="/register" element={<RegisterForm />} />
+                    <Route path="/renew" element={<RenewalForm />} />
+
+
+                    <Route path="/studentlist" element={<StudentList />} /> {/* Corrected route for StudentList */}
+                    <Route path="/student/:id" element={<StudentDetail />} />
                     </Routes>
             </div>
         </Router>
