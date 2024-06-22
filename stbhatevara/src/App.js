@@ -6,22 +6,31 @@ import TrusteeLevel from './TrusteeLevel/main';
 import SelectionRecord from './TrusteeLevel/SelectionRecord';
 import Analytics from './TrusteeLevel/Analytics';
 import Status from './TrusteeLevel/Status'; // Updated import
+import Vol from './Volunteer/main'
+import StudentDetails from './Volunteer/studentDetails';
+import MeetingForm from './Volunteer/meeting';
 import AlumniHome from './alumniLevel/AlumniHome';
 import AlumniProfile from './alumniLevel/AlumniProfile';
 import AlumniConnections from './alumniLevel/AlumniConnections';
 
 const App = () => {
     return (
-        <Router>
+      <Router>
+            <div className="App">
             <Routes>
-                <Route path="/" element={<Navigate to="/alumni/home" />} />
                 <Route path="/alumni/home" element={<AlumniHome />} />
                 <Route path="/alumni/profile" element={<AlumniProfile />} />
                 <Route path="/alumni/connections" element={<AlumniConnections />} />
                 <Route path="/" element={<TrusteeLevel />} />
                     <Route path="/selection-record" element={<SelectionRecord />} />
                     <Route path="/analytics" element={<Analytics />} />
-                    <Route path="/status/:id" element={<Status />} />            </Routes>
+                    <Route path="/status/:id" element={<Status />} /> {/* New route for Status component */}
+                    <Route path="/volunteer" element={<Vol />} />
+                    <Route path="/volunteerStudentDetails" element={<StudentDetails/>} />
+                    <Route path="/volunteerMeeting" element={<MeetingForm/>} />
+                    <Route path="/volunteerSpecificStudent/:id" element={<Status/>} />
+                </Routes>
+            </div>
         </Router>
     );
 };
