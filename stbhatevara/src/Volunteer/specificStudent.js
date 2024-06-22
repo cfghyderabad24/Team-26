@@ -9,7 +9,7 @@ const students = [
     { id: 3, name: 'Mike Johnson', age: 21, major: 'Psychology', status: 'Pending Approval' },
 ];
 
-const Status = () => {
+const VolStatus = () => {
     const navigate = useNavigate();
     const { id } = useParams();
     const [student, setStudent] = useState(null);
@@ -241,4 +241,4 @@ const Status = () => {
     );
 };
 
-export default Status;
+export default VolStatus;

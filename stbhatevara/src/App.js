@@ -12,6 +12,7 @@ import Status from './TrusteeLevel/Status';
 import Vol from './Volunteer/main';
 import StudentDetails from './Volunteer/studentDetails';
 import MeetingForm from './Volunteer/meeting';
+import VolStatus from './Volunteer/specificStudent'
 
 // Authentication components
 import LoginPage from './components/LoginPage';
@@ -43,7 +44,7 @@ function App() {
                     <Route path="/volunteer" element={<Vol />} />
                     <Route path="/volunteerStudentDetails" element={<StudentDetails />} />
                     <Route path="/volunteerMeeting" element={<MeetingForm />} />
-                    <Route path="/volunteerSpecificStudent/:id" element={<Status />} />
+                    <Route path="/volunteerSpecificStudent/:id" element={<VolStatus />} />
 
                     {/* Alumni Routes */}
                     <Route path="/alumni/home" element={<AlumniHome />} />

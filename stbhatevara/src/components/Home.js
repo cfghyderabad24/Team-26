@@ -34,11 +34,9 @@ const Home = () => {
           <Link to="/login">Login</Link> {/* Link to login page */}
         </div>
         <div className="division" id="volunteer">
-          <Link to="/volunteer">
             <h2>Volunteer</h2>
             <p>Information about volunteering...</p>
             <Link to="/login">Login</Link> 
-          </Link>
         </div>
         <div className="division" id="ngo">
           <h2>NGO</h2>
@@ -46,18 +44,14 @@ const Home = () => {
           <Link to="/login">Login</Link> 
         </div>
         <div className="division" id="trust">
-          <Link to="/trustee">
             <h2>Trust</h2>
             <p>Information about trust...</p>
             <Link to="/login">Login</Link> 
-          </Link>
         </div>
         <div className="division" id="alumni">
-          <Link to="/alumni/home">
           <h2>Alumni</h2>
           <p>Information about alumni...</p>
           <Link to="/login">Login</Link> 
-          </Link>
         </div>
       </section>
 
