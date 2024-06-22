@@ -16,7 +16,6 @@ import AlumniConnections from './alumniLevel/AlumniConnections';
 const App = () => {
     return (
       <Router>
-            <div className="App">
             <Routes>
                 <Route path="/alumni/home" element={<AlumniHome />} />
                 <Route path="/alumni/profile" element={<AlumniProfile />} />
@@ -30,9 +29,9 @@ const App = () => {
                     <Route path="/volunteerMeeting" element={<MeetingForm/>} />
                     <Route path="/volunteerSpecificStudent/:id" element={<Status/>} />
                 </Routes>
-            </div>
         </Router>
     );
 };
 
+export default App;
 
