@@ -124,7 +124,6 @@ const Analytics = () => {
                             <Table>
                                 <TableHead>
                                     <TableRow>
-                                        <TableCell>Date</TableCell>
                                         <TableCell>Student Name</TableCell>
                                         <TableCell align="right">Amount</TableCell>
                                     </TableRow>
@@ -133,8 +132,8 @@ const Analytics = () => {
                                     {recentScholarshipRecords.map((record, index) => (
                                         <TableRow key={index}>
                                             <TableCell>{record.date}</TableCell>
-                                            <TableCell>{record.studentName}</TableCell>
-                                            <TableCell align="right">{record.amount}</TableCell>
+                                            <TableCell>{record.Name}</TableCell>
+                                            <TableCell align="right">{record.currentYearFee}</TableCell>
                                         </TableRow>
                                     ))}
                                 </TableBody>

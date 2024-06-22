@@ -1,19 +1,24 @@
-// src/components/SelectionRecord.js
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Table, TableBody, TableCell, TableHead, TableRow, Typography, Paper } from '@mui/material';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate from react-router-dom
-
-const students = [
-    { id: 1, name: 'John Doe', age: 20, major: 'Computer Science', status: 'Pending Approval' },
-    { id: 2, name: 'Jane Smith', age: 22, major: 'Law', status: 'Pending Approval' },
-    { id: 3, name: 'Mike Johnson', age: 21, major: 'Psychology', status: 'Pending Approval' },
-];
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios'; // Import axios for API requests
 
 const SelectionRecord = () => {
-    const navigate = useNavigate(); // useNavigate hook
+    const [students, setStudents] = useState([]); // State to store fetched students
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        axios.get('http://localhost:3500/scholar/getAllStudents') // Adjust the URL to your API endpoint
+            .then(response => {
+                setStudents(response.data); // Set the fetched students in state
+            })
+            .catch(error => {
+                console.error('Error fetching students:', error);
+            });
+    }, []); // Empty dependency array to fetch data only once on component mount
 
     const handleStudentClick = (student) => {
-        navigate(`/status/${student.id}`); // Navigate to status page for the selected student
+        navigate(`/status/${student._id}`);
     };
 
     return (
@@ -25,23 +30,19 @@ const SelectionRecord = () => {
                         <TableRow>
                             <TableCell>ID</TableCell>
                             <TableCell>Name</TableCell>
-                            <TableCell>Age</TableCell>
                             <TableCell>Major</TableCell>
-                            <TableCell>Status</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         {students.map((student) => (
                             <TableRow
-                                key={student.id}
+                                key={student._id}
                                 onClick={() => handleStudentClick(student)}
                                 style={{ cursor: 'pointer' }}
                             >
-                                <TableCell>{student.id}</TableCell>
-                                <TableCell>{student.name}</TableCell>
-                                <TableCell>{student.age}</TableCell>
-                                <TableCell>{student.major}</TableCell>
-                                <TableCell>{student.status}</TableCell>
+                                <TableCell>{student._id}</TableCell>
+                                <TableCell>{student.Name}</TableCell>
+                                <TableCell>{student.courseName}</TableCell>
                             </TableRow>
                         ))}
                     </TableBody>

@@ -1,41 +1,33 @@
-// src/components/Status.js
 import React, { useState, useEffect } from 'react';
 import { Container, Typography, Button, TextField, Grid, Paper } from '@mui/material';
-import { useNavigate, useParams } from 'react-router-dom'; // Import useParams and useNavigate
-
-const students = [
-    { id: 1, name: 'John Doe', age: 20, major: 'Computer Science', status: 'Pending Approval' },
-    { id: 2, name: 'Jane Smith', age: 22, major: 'Law', status: 'Pending Approval' },
-    { id: 3, name: 'Mike Johnson', age: 21, major: 'Psychology', status: 'Pending Approval' },
-];
+import { useNavigate, useParams } from 'react-router-dom';
+import axios from 'axios'; // Import axios for API requests
 
 const Status = () => {
     const navigate = useNavigate();
-    const params = useParams(); // useParams hook to get route parameters
-    const [student, setStudent] = useState(null); // State to hold the student object
+    const params = useParams();
+    const [student, setStudent] = useState({});
     const [review, setReview] = useState('');
     const [amount, setAmount] = useState('');
 
     useEffect(() => {
-        // Find the student based on the ID from route params
-        const studentId = parseInt(params.id); // Convert id to integer
-        const foundStudent = students.find(student => student.id === studentId);
-        if (foundStudent) {
-            setStudent(foundStudent);
-        } else {
-            // Handle case where student is not found (optional)
-            navigate('/'); // Redirect to homepage or appropriate route
-        }
-    }, [params.id, navigate]);
+        axios.get(`http://localhost:3500/scholar/student/${params.id}`) // Check if this URL is correct
+            .then(response => {
+                setStudent(response.data);
+                console.log(student) // Set the fetched student in state
+            })
+            .catch(error => {
+                console.error('Error fetching student:', error); // Add proper error handling here
+            });
+    }, [params.id]);
+    
 
     const handleAccept = () => {
-        // Handle accept action
-        console.log(`Accepted ${student.name} with amount: ${amount}`);
+        console.log(`Accepted ${student.Name} with amount: ${amount}`);
     };
 
     const handleDecline = () => {
-        // Handle decline action
-        console.log(`Declined ${student.name}`);
+        console.log(`Declined ${student.Name}`);
     };
 
     const handleReviewChange = (event) => {
@@ -47,21 +39,12 @@ const Status = () => {
     };
 
     const handleSubmit = () => {
-        // Handle submit action (e.g., send comment and amount to server)
         console.log(`Review submitted: ${review}`);
         console.log(`Amount submitted: ${amount}`);
-        // Optionally, clear the comment box and amount field after submission
         setReview('');
         setAmount('');
     };
 
-    if (!student) {
-        return (
-            <Container>
-                <Typography variant="h4">Student not found</Typography>
-            </Container>
-        );
-    }
 
     return (
         <Container maxWidth="md" style={styles.container}>
@@ -72,11 +55,9 @@ const Status = () => {
                 <Grid container spacing={3} justifyContent="center">
                     <Grid item xs={12}>
                         <Typography variant="body1">
-                            ID: {student.id}<br />
-                            Name: {student.name}<br />
-                            Age: {student.age}<br />
-                            Major: {student.major}<br />
-                            Status: {student.status}<br />
+                            ID: {student._id}<br />
+                            Name: {student.Name}<br />
+                            Major: {student.courseName}<br />
                         </Typography>
                     </Grid>
                     <Grid item xs={12} sm={6}>

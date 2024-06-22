@@ -5,6 +5,7 @@ const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
 const verifyToken=require('../APIs/verifyTokenMid')
+const {ObjectId} = require('mongodb')
 
 dotenv.config();
 
@@ -57,7 +58,7 @@ app.get('/student', async (req, res) => {
     }
 });
 
-app.get('/student/:id',verifyToken,(req,res)=>{
+app.get('/student/:id',(req,res)=>{
     if(ObjectId.isValid(req.params.id))
         {
             ScholarDetail

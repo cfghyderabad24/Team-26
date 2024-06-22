@@ -44,7 +44,7 @@ function App() {
                     <Route path="/volunteer" element={<Vol />} />
                     <Route path="/volunteerStudentDetails" element={<StudentDetails />} />
                     <Route path="/volunteerMeeting" element={<MeetingForm />} />
-                    <Route path="/volunteerSpecificStudent/:id" element={<specificStudent/>} />
+                    <Route path="/volunteerSpecificStudent/:id" element={<Status/>} />
 
                     {/* Alumni Routes */}
                     <Route path="/alumni/home" element={<AlumniHome />} />
