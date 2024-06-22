@@ -14,7 +14,6 @@ const studentSchema = new mongoose.Schema({
   whatsappNumber: { type: String, required: true },
   alternateMobileNumber: { type: String },
   email: { type: String, required: true, unique: true },
-
 });
 
 const ScholarDetail = mongoose.model('ScholarDetail', studentSchema);
