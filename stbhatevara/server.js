@@ -12,6 +12,9 @@ mongoose.connect(dburi)
 })
 .catch((err)=>console.log(err))
 
-
-
+app.use(express.static(path.join(__dirname, 'build')));
 app.use('/user', User);
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
