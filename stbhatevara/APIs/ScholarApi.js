@@ -31,6 +31,17 @@ app.post('/fresh', async (req, res) => {
     }
 });
 
+app.get('/getAllStudents',(req,res)=>{
+    ScholarDetail
+    .find()
+    .then((stu)=>{
+        res.status(200).json(stu);
+    })
+    .catch((err)=>{
+        res.status(500).json(err);
+    })
+})
+
 app.get('/student', async (req, res) => {
     try {
         // Find IDs from Status table where status is 1

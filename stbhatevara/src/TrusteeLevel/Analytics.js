@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Typography, Grid, Paper, Table, TableContainer, TableHead, TableRow, TableCell, TableBody } from '@mui/material';
 import { AreaChart, Area, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer, CartesianGrid } from 'recharts';
+import axios from 'axios';
 
 const data = [
     { year: '2015', amount: 8000 },
@@ -22,13 +23,20 @@ const studentData = [
     // Add more data points as needed
 ];
 
-const recentScholarshipRecords = [
-    { studentName: 'John Doe', amount: 1500, category: 'Men', date: '2024-06-20' },
-    { studentName: 'Jane Smith', amount: 2000, category: 'Women', date: '2024-06-19' },
-    // Add more recent records as needed
-];
-
 const Analytics = () => {
+    const [recentScholarshipRecords, setRecentScholarshipRecords] = useState([]);
+
+    useEffect(() => {
+        axios.get('http://localhost:3500/scholar/getAllStudents')
+            .then((res) => {
+                console.log('Response data:', res.data);  
+                setRecentScholarshipRecords(res.data);
+            })
+            .catch((err) => {
+                console.log('Error:', err);
+            });
+    }, []);
+
     return (
         <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Typography variant="h4" gutterBottom>
