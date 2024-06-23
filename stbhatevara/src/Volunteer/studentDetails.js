@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Card, CardContent, Typography, Container, Grid } from '@mui/material';
+import { Card, CardContent, Typography, Container, Grid ,Paper,Box} from '@mui/material';
 import axios from 'axios';
 
 const StudentDetails = () => {
@@ -25,7 +25,15 @@ const StudentDetails = () => {
     return (
         <Container style={styles.container}>
             <Typography variant="h4" style={styles.header}>Student Details</Typography>
-            <Grid container spacing={3} direction="column">
+            <Paper elevation={3} style={styles.table}>
+                <Box style={styles.tableHeader}>
+                    <Grid container>
+                        <Grid item xs={3} style={styles.tableHeaderCell}><Typography variant="h6">Name</Typography></Grid>
+                        <Grid item xs={2} style={styles.tableHeaderCell}><Typography variant="h6">Age</Typography></Grid>
+                        <Grid item xs={3} style={styles.tableHeaderCell}><Typography variant="h6">Course</Typography></Grid>
+                        <Grid item xs={4} style={styles.tableHeaderCell}><Typography variant="h6">Major</Typography></Grid>
+                    </Grid>
+                </Box>
                 {students.map(student => (
                     <Grid item key={student._id}>
                         <Card style={styles.card} onClick={() => handleCardClick(student._id)}>
@@ -38,7 +46,7 @@ const StudentDetails = () => {
                         </Card>
                     </Grid>
                 ))}
-            </Grid>
+            </Paper>
         </Container>
     );
 };
@@ -51,23 +59,26 @@ const styles = {
         marginBottom: '20px',
         textAlign: 'center'
     },
-    card: {
-        minHeight: 100,
-        display: 'flex',
-        alignItems: 'center',
-        padding: '10px',
-        cursor: 'pointer' // Make cursor pointer to indicate clickable
+    table: {
+        width: '100%',
+        overflowX: 'auto'
     },
-    cardContent: {
-        display: 'flex',
-        justifyContent: 'space-between',
-        width: '100%'
+    tableHeader: {
+        backgroundColor: '#f5f5f5',
+        padding: '10px'
     },
-    name: {
-        flexGrow: 1
+    tableHeaderCell: {
+        padding: '10px'
     },
-    detail: {
-        marginLeft: '20px'
+    tableRow: {
+        borderBottom: '1px solid #e0e0e0',
+        cursor: 'pointer', // Make cursor pointer to indicate clickable
+        '&:hover': {
+            backgroundColor: '#f9f9f9'
+        }
+    },
+    tableCell: {
+        padding: '10px'
     }
 };
 

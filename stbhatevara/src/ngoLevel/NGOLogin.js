@@ -1,14 +1,14 @@
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './LoginPage.css';
+import './NGOLogin.css';
+import { useNavigate } from 'react-router-dom';
 
-const LoginPage = () => {
+const NGOLogin = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  let navigate=useNavigate()
+  let navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -17,10 +17,8 @@ const LoginPage = () => {
         password
       });
       // Handle the response data as needed
-      navigate('/StudentMain')
       console.log(response.data);
-
-      
+      navigate("/studentlist")
     } catch (error) {
       console.error('There was an error logging in!', error);
     }
@@ -51,10 +49,10 @@ const LoginPage = () => {
         <button type="submit">Login</button>
       </form>
       <p>
-        Don't have an account? <Link to="/signup">Sign up</Link>
+        Don't have an account? <Link to="NGO/signup">Sign up</Link>
       </p>
     </div>
   );
 }
 
-export default LoginPage;
+export default NGOLogin;
